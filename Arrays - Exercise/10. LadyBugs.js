@@ -11,7 +11,7 @@ function solve(input){
             continue;
         }
 
-        if (checkForLadybugIndex(ladyBugIndex, field)) {
+        if (checkForLadybugIndex(ladyBugIndex, ladybugsField)) {
             continue;
         }
 
@@ -36,6 +36,7 @@ function solve(input){
             for (let j = ladyBugIndex; j >= 0; j -= increment) {
                 if (rangeCheck(j - increment, fieldLength)) {
                     ladybugsField[ladyBugIndex] = 0;
+                    ladybugsField[la]
                     break;
                 }
  
@@ -51,39 +52,40 @@ function solve(input){
     }
 
     console.log(ladybugsField.join(' '));
-}
 
-function checkForLadybugIndex(ladyBugIndex, field){
-    return field[ladyBugIndex] === 0;
-}
-
-function initialLadybugsField(ladybugsInitialIndexes, field){
-    let ladybugsIndexes = ladybugsInitialIndexes.split(' ');
-    for (let i = 0; i < ladybugsIndexes.length; i++) {
-        let index = ladybugsIndexes[i];
-        if (rangeCheck(index, field.length)) {
-            continue;
+    function checkForLadybugIndex(ladyBugIndex, field){
+        return field[ladyBugIndex] === 0;
+    }
+    
+    function initialLadybugsField(ladybugsInitialIndexes, field){
+        let ladybugsIndexes = ladybugsInitialIndexes.split(' ');
+        for (let i = 0; i < ladybugsIndexes.length; i++) {
+            let index = ladybugsIndexes[i];
+            if (rangeCheck(index, field.length)) {
+                continue;
+            }
+            field[index] = 1;
         }
-        field[index] = 1;
+    
+        return field;
     }
-
-    return field;
-}
-
-function rangeCheck(index, fieldLength){
-    return index < 0 || index >= fieldLength;
-}
-
-function initialField(fieldLength, ladybugsInitialIndexes){
-    let field = []; 
-    for (let i = 0; i < fieldLength; i++) {
-        field[i] = 0;
+    
+    function rangeCheck(index, fieldLength){
+        return index < 0 || index >= fieldLength;
     }
-
-    return field;
+    
+    function initialField(fieldLength, ladybugsInitialIndexes){
+        let field = []; 
+        for (let i = 0; i < fieldLength; i++) {
+            field[i] = 0;
+        }
+    
+        return field;
+    }    
 }
+
 
 solve([ 5, '3',
-'3 left 2',
+'3 left 4',
 '1 left -2']
 );
