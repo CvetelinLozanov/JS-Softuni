@@ -8,8 +8,10 @@ function solve(input) {
                     parking.push(carNumber);
                 }                
             } else {
-                let index = parking.indexOf(carNumber);
-                parking.splice(index, 1); 
+                if (parking.includes(carNumber)) {
+                    let index = parking.indexOf(carNumber);
+                    parking.splice(index, 1); 
+                }                
             }
         });
 
